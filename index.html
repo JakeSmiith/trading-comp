@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stock Chart Viewer</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+input, button { padding: 8px; font-size: 16px; }
+img { margin-top: 20px; max-width: 100%; }
+</style>
+</head>
+<body>
+<h1>Stock Chart Viewer</h1>
+<input type="text" id="ticker" placeholder="Enter stock symbol (e.g., AAPL)">
+<button onclick="fetchChart()">Get Chart</button>
+<div>
+    <img id="chartImage" alt="Stock chart will appear here">
+</div>
+
+<script>
+async function fetchChart() {
+    const ticker = document.getElementById('ticker').value.trim();
+    if (!ticker) {
+        alert("Please enter a ticker symbol");
+        return;
+    }
+    const img = document.getElementById('chartImage');
+    img.src = `http://127.0.0.1:8000/chart/${ticker}?t=${Date.now()}`;
+}
+</script>
+</body>
+</html>
